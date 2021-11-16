@@ -2,26 +2,27 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import api from "../../../api";
 import Qualities from "../../ui/qualities";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const UserPage = ({ userId }) => {
+const UserEditPage = ({ userId }) => {
     const history = useHistory();
     const [user, setUser] = useState();
     useEffect(() => {
         api.users.getById(userId).then((data) => setUser(data));
     });
     const handleClick = () => {
-        history.push(`/users/${user._id}/edit`);
+        history.push("/users");
     };
     if (user) {
         return (
             <div>
-                <h1> {user.name}</h1>
-                <h2>Профессия: {user.profession.name}</h2>
+                EDIT PAGE
+                {/* <h1> {user.name}</h1>
+                <h2>Профессия11111: {user.profession.name}</h2>
                 <Qualities qualities={user.qualities} />
                 <p>completedMeetings: {user.completedMeetings}</p>
                 <h2>Rate: {user.rate}</h2>
-                <button onClick={handleClick}>Редактировать</button>
+                <button onClick={handleClick}>Редактировать</button> */}
             </div>
         );
     } else {
@@ -29,8 +30,8 @@ const UserPage = ({ userId }) => {
     }
 };
 
-UserPage.propTypes = {
+UserEditPage.propTypes = {
     userId: PropTypes.string.isRequired
 };
 
-export default UserPage;
+export default UserEditPage;
